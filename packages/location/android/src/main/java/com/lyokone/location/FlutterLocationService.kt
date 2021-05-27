@@ -85,9 +85,9 @@ class BackgroundNotification(
             if (it != 0) it else getDrawableId(kDefaultNotificationIconName)
         }
 
-        val exit_intent = Intent(this, NotificationBroadcastReceiver.class.java)
+        val exit_intent = Intent(context, NotificationBroadcastReceiver.class)
         exit_intent.action = "stop_exit"
-        val exitPendingIntent = PendingIntent.getBroadcast(this, 1, exit_intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val exitPendingIntent = PendingIntent.getBroadcast(context, 1, exit_intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         builder = builder
                 .setContentTitle(options.title)
