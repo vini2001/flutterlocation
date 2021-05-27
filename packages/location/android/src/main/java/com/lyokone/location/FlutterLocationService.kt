@@ -16,7 +16,7 @@ import androidx.core.app.NotificationManagerCompat
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.lyokone.location.NotificationBroadcastReceiver
+import NotificationBroadcastReceiver
 
 const val kDefaultChannelName: String = "Location background service"
 const val kDefaultNotificationTitle: String = "Location background service running"
