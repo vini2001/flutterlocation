@@ -92,7 +92,7 @@ class BackgroundNotification(
         builder = builder
                 .setContentTitle(options.title)
                 .addAction(R.drawable.ic_close_black, "Exit", exitPendingIntent)
-                .setSmallIcon(iconId)
+                .setSmallIcon(R.drawable.ic_golf_cart)
                 .setContentText(options.subtitle)
                 .setSubText(options.description)
 
