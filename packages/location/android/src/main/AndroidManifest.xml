@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.lyokone.location">
+  package="com.lyokone.location" xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -9,6 +9,14 @@
             android:exported="false"
             android:foregroundServiceType="location"
             android:name=".FlutterLocationService"/>
+        <receiver
+          android:name=".NotificationBroadcastReceiver"
+          android:enabled="true"
+          android:exported="false">
+          <intent-filter>
+              <action android:name="stop_exit" />
+          </intent-filter>
+      </receiver>
     </application>
 
 </manifest>
