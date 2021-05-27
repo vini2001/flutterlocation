@@ -9,7 +9,7 @@ import android.location.Location
 import android.os.*
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.almoullim.background_location.LocationUpdatesService
+import com.lyokone.location.FlutterLocationService
 
 import android.widget.Toast
 import android.util.Log
