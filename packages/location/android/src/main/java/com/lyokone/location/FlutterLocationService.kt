@@ -16,7 +16,6 @@ import androidx.core.app.NotificationManagerCompat
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import NotificationBroadcastReceiver
 
 const val kDefaultChannelName: String = "Location background service"
 const val kDefaultNotificationTitle: String = "Location background service running"
@@ -86,8 +85,7 @@ class BackgroundNotification(
             if (it != 0) it else getDrawableId(kDefaultNotificationIconName)
         }
 
-        val exit_intent = Intent(this, NotificationBroadcastReceiver::class.java)
-        exit_intent.putExtra(STOP_SERVICE, true)
+        val exit_intent = Intent(this, NotificationBroadcastReceiver.class.java)
         exit_intent.action = "stop_exit"
         val exitPendingIntent = PendingIntent.getBroadcast(this, 1, exit_intent, PendingIntent.FLAG_UPDATE_CURRENT)
 

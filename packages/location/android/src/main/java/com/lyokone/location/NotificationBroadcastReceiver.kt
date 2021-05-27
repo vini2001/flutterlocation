@@ -9,7 +9,6 @@ import android.location.Location
 import android.os.*
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import FlutterLocationService
 
 import android.widget.Toast
 import android.util.Log
