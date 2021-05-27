@@ -85,13 +85,8 @@ class BackgroundNotification(
             if (it != 0) it else getDrawableId(kDefaultNotificationIconName)
         }
 
-        val exit_intent = Intent(context, NotificationBroadcastReceiver::class.java)
-        exit_intent.action = "stop_exit"
-        val exitPendingIntent = PendingIntent.getBroadcast(context, 1, exit_intent, PendingIntent.FLAG_UPDATE_CURRENT)
-
         builder = builder
                 .setContentTitle(options.title)
-                .addAction(R.drawable.ic_close_black, "Exit", exitPendingIntent)
                 .setSmallIcon(R.drawable.ic_golf_cart)
                 .setContentText(options.subtitle)
                 .setSubText(options.description)
@@ -126,6 +121,13 @@ class BackgroundNotification(
 
     fun build(): Notification {
         updateChannel(options.channelName)
+        
+        val exit_intent = Intent(context, NotificationBroadcastReceiver::class.java)
+        exit_intent.action = "stop_exit"
+        val exitPendingIntent = PendingIntent.getBroadcast(context, 1, exit_intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        builder.addAction(R.drawable.ic_close_black, "Exit", exitPendingIntent)
+
         return builder.build()
     }
 }
