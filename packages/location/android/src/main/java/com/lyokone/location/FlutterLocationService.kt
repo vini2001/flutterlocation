@@ -40,6 +40,12 @@ class BackgroundNotification(
     private var builder: NotificationCompat.Builder = NotificationCompat.Builder(context, channelId)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
 
+    val exit_intent = Intent(context, NotificationBroadcastReceiver::class.java)
+    exit_intent.action = "stop_exit"
+    val exitPendingIntent = PendingIntent.getBroadcast(context, 1, exit_intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+    builder.addAction(R.drawable.ic_close_black, "Exit", exitPendingIntent)
+
     private val STOP_SERVICE = "stop_service"
 
     init {
@@ -121,12 +127,6 @@ class BackgroundNotification(
 
     fun build(): Notification {
         updateChannel(options.channelName)
-        
-        val exit_intent = Intent(context, NotificationBroadcastReceiver::class.java)
-        exit_intent.action = "stop_exit"
-        val exitPendingIntent = PendingIntent.getBroadcast(context, 1, exit_intent, PendingIntent.FLAG_UPDATE_CURRENT)
-
-        builder.addAction(R.drawable.ic_close_black, "Exit", exitPendingIntent)
 
         return builder.build()
     }
