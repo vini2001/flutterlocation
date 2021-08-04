@@ -40,10 +40,15 @@ class BackgroundNotification(
     private var builder: NotificationCompat.Builder = NotificationCompat.Builder(context, channelId)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
 
-    private val STOP_SERVICE = "stop_service"
-
     init {
         updateNotification(options, false)
+
+        val exitIntent = Intent(context, NotificationBroadcastReceiver::class.java)
+        exitIntent.action = "stop_exit"
+        val exitPendingIntent = PendingIntent.getBroadcast(
+            context, 1, exitIntent, PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        builder = builder.addAction(R.drawable.ic_close_black, "Exit", exitPendingIntent)
     }
 
     private fun getDrawableId(iconName: String): Int {
@@ -91,6 +96,7 @@ class BackgroundNotification(
                 .setContentText(options.subtitle)
                 .setSubText(options.description)
 
+
         builder = if (options.color != null) {
             builder.setColor(options.color).setColorized(true)
         } else {
@@ -121,13 +127,6 @@ class BackgroundNotification(
 
     fun build(): Notification {
         updateChannel(options.channelName)
-        
-        val exit_intent = Intent(context, NotificationBroadcastReceiver::class.java)
-        exit_intent.action = "stop_exit"
-        val exitPendingIntent = PendingIntent.getBroadcast(context, 1, exit_intent, PendingIntent.FLAG_UPDATE_CURRENT)
-
-        builder.addAction(R.drawable.ic_close_black, "Exit", exitPendingIntent)
-
         return builder.build()
     }
 }
